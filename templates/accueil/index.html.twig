@@ -1,20 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Heritage Motors - Excellence{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="dark-theme-wrapper">
+        
+        {# HEADER #}
+        <header class="premium-header">
+            <div class="header-left">
+                <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="main-logo">
+            </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+            <div class="header-right">
+                <a href="#" class="login-btn" title="Connexion">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+                <div class="hamburger-menu" onclick="toggleMenu()">
+                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </div>
+                <div class="dropdown-menu" id="appMenu">
+                    <ul>
+                        <li><a href="#">Heritage Rent</a></li>
+                        <li><a href="#">Heritage Design</a></li>
+                        <li><a href="#">Heritage Expo</a></li>
+                        <li><a href="#">Heritage Volt</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/ayush/Documents/Rayan/B3_DEV_INIT/projets test synphomy/iris_projets/src/Controller/AccueilController.php</code></li>
-        <li>Your template at <code>C:/Users/ayush/Documents/Rayan/B3_DEV_INIT/projets test synphomy/iris_projets/templates/accueil/index.html.twig</code></li>
-    </ul>
-</div>
+        {# HERO SECTION #}
+        <section class="hero-section">
+            <div class="content-box">
+                
+                <h1 class="main-title">HERITAGE <span class="gold-text">MOTOR</span></h1>
+                <p class="subtitle">
+                    L'excellence automobile à portée de main. Location, vente et personnalisation de véhicules d'exception depuis 2010.
+                </p>
+
+                {# CERCLES + BOUTONS #}
+                <div class="filter-container">
+                    
+                    {# ITEM 1 : CATALOGUE #}
+                    <div class="filter-item">
+                        <div class="circle-gold">
+                            <img src="{{ asset('images/gt_500.jpg') }}" alt="Catalogue">
+                        </div>
+                        <a href="#" class="btn-gold-label">CATALOGUE</a>
+                    </div>
+
+                    {# ITEM 2 : LOCATION #}
+                    <div class="filter-item">
+                        <div class="circle-gold">
+                            <img src="{{ asset('images/logo_location.png') }}" alt="Location" class="contain-img">
+                        </div>
+                        <a href="#" class="btn-gold-label">LOCATION</a>
+                    </div>
+
+                    {# ITEM 3 : DESIGN #}
+                    <div class="filter-item">
+                        <div class="circle-gold">
+                            <img src="{{ asset('images/logo_desgin.png') }}" alt="Design" class="contain-img">
+                        </div>
+                        <a href="#" class="btn-gold-label">DESIGN</a>
+                    </div>
+
+                    {# ITEM 4 : EXPO #}
+                    <div class="filter-item">
+                        <div class="circle-gold">
+                            <img src="{{ asset('images/logo_expo.png') }}" alt="Expo" class="contain-img">
+                        </div>
+                        <a href="#" class="btn-gold-label">EXPO</a>
+                    </div>
+
+                    {# ITEM 5 : ÉCHANGE #}
+                    <div class="filter-item">
+                        <div class="circle-gold">
+                            {# Placeholder #}
+                        </div>
+                        <a href="#" class="btn-gold-label">ÉCHANGE</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("appMenu");
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        }
+    </script>
 {% endblock %}
