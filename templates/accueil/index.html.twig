@@ -5,14 +5,15 @@
 {% block body %}
     <div class="dark-theme-wrapper">
         
-        {# HEADER #}
+
         <header class="premium-header">
             <div class="header-left">
                 <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="main-logo">
             </div>
 
             <div class="header-right">
-                <a href="#" class="login-btn" title="Connexion">
+             <a href="{{ path('app_login') }}" class="login-btn" title="Connexion">
+
                     <svg viewBox="0 0 24 24" width="28" height="28" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </a>
                 <div class="hamburger-menu" onclick="toggleMenu()">
@@ -29,7 +30,6 @@
             </div>
         </header>
 
-        {# HERO SECTION #}
         <section class="hero-section">
             <div class="content-box">
                 
@@ -38,10 +38,10 @@
                     L'excellence automobile à portée de main. Location, vente et personnalisation de véhicules d'exception depuis 2010.
                 </p>
 
-                {# CERCLES + BOUTONS #}
+           
                 <div class="filter-container">
                     
-                    {# ITEM 1 : CATALOGUE #}
+          
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/gt_500.jpg') }}" alt="Catalogue">
@@ -49,7 +49,6 @@
                         <a href="#" class="btn-gold-label">CATALOGUE</a>
                     </div>
 
-                    {# ITEM 2 : LOCATION #}
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_location.png') }}" alt="Location" class="contain-img">
@@ -57,7 +56,7 @@
                         <a href="#" class="btn-gold-label">LOCATION</a>
                     </div>
 
-                    {# ITEM 3 : DESIGN #}
+               
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_desgin.png') }}" alt="Design" class="contain-img">
@@ -65,7 +64,7 @@
                         <a href="#" class="btn-gold-label">DESIGN</a>
                     </div>
 
-                    {# ITEM 4 : EXPO #}
+                  
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_expo.png') }}" alt="Expo" class="contain-img">
