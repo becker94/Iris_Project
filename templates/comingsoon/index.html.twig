@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bientôt - Heritage Motors{% endblock %}
+
+{% block body %}
+<div class="coming-soon-wrapper">
+    <div class="content-box-center">
+        <div class="big-icon">⚙️</div>
+        <h1>En cours de <span class="gold-text">Construction</span></h1>
+        <p class="subtitle-text">Cette section arrive très prochainement.</p>
+        
+        <div class="separator-gold"></div>
+        
+        <p class="info-text">
+            Nos équipes travaillent actuellement sur cette fonctionnalité pour vous offrir 
+            une expérience à la hauteur de nos véhicules d'exception.
+        </p>
+        
+        <div class="actions">
+            <a href="{{ path('app_accueil') }}" class="btn-outline">Retour à l'accueil</a>
+            <a href="{{ path('app_catalogue') }}" class="btn-gold-large">Voir le catalogue</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -5,15 +5,13 @@
 {% block body %}
     <div class="dark-theme-wrapper">
         
-
         <header class="premium-header">
             <div class="header-left">
                 <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="main-logo">
             </div>
 
             <div class="header-right">
-             <a href="{{ path('app_login') }}" class="login-btn" title="Connexion">
-
+                <a href="{{ path('app_login') }}" class="login-btn" title="Connexion">
                     <svg viewBox="0 0 24 24" width="28" height="28" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </a>
                 <div class="hamburger-menu" onclick="toggleMenu()">
@@ -21,10 +19,10 @@
                 </div>
                 <div class="dropdown-menu" id="appMenu">
                     <ul>
-                        <li><a href="#">Heritage Rent</a></li>
-                        <li><a href="#">Heritage Design</a></li>
-                        <li><a href="#">Heritage Expo</a></li>
-                        <li><a href="#">Heritage Volt</a></li>
+                        <li><a href="{{ path('app_coming_soon') }}">Heritage Rent</a></li>
+                        <li><a href="{{ path('app_coming_soon') }}">Heritage Design</a></li>
+                        <li><a href="{{ path('app_coming_soon') }}">Heritage Expo</a></li>
+                        <li><a href="{{ path('app_coming_soon') }}">Heritage Volt</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,46 +36,40 @@
                     L'excellence automobile à portée de main. Location, vente et personnalisation de véhicules d'exception depuis 2010.
                 </p>
 
-           
                 <div class="filter-container">
                     
-          
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/gt_500.jpg') }}" alt="Catalogue">
                         </div>
-                      <a href="{{ path('app_catalogue') }}" class="btn-gold-label">CATALOGUE</a>
+                        <a href="{{ path('app_catalogue') }}" class="btn-gold-label">CATALOGUE</a>
                     </div>
 
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_location.png') }}" alt="Location" class="contain-img">
                         </div>
-                        <a href="#" class="btn-gold-label">LOCATION</a>
+                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">LOCATION</a>
                     </div>
 
-               
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_desgin.png') }}" alt="Design" class="contain-img">
                         </div>
-                        <a href="#" class="btn-gold-label">DESIGN</a>
+                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">DESIGN</a>
                     </div>
 
-                  
                     <div class="filter-item">
                         <div class="circle-gold">
                             <img src="{{ asset('images/logo_expo.png') }}" alt="Expo" class="contain-img">
                         </div>
-                        <a href="#" class="btn-gold-label">EXPO</a>
+                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">EXPO</a>
                     </div>
 
-                    
                     <div class="filter-item">
                         <div class="circle-gold">
-                            
                         </div>
-                        <a href="#" class="btn-gold-label">ÉCHANGE</a>
+                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">ÉCHANGE</a>
                     </div>
 
                 </div>
