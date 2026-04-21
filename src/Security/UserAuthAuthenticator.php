@@ -26,6 +26,9 @@ class UserAuthAuthenticator extends AbstractLoginFormAuthenticator
     {
     }
 
+    /**
+     * Cette méthode récupère l'email et le mot de passe du formulaire
+     */
     public function authenticate(Request $request): Passport
     {
         $email = $request->getPayload()->getString('email');
@@ -42,15 +45,16 @@ class UserAuthAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    /**
+     * Cette méthode définit où envoyer l'utilisateur après une connexion réussie
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-         return new RedirectResponse($this->urlGenerator->generate('home'));
-       // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('app_accueil'));
     }
 
     protected function getLoginUrl(Request $request): string

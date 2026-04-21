@@ -1,57 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ vehicule.titre }} - Heritage Motors{% endblock %}
+{% block title %}{{ voiture.immatriculation }} - Détails - Heritage Motors{% endblock %}
 
 {% block body %}
 <div class="product-wrapper">
     <div class="product-container">
         
+        {# --- PARTIE VISUELLE (IMAGE DYNAMIQUE) --- #}
         <div class="product-visual">
-            <span class="product-badge">{{ vehicule.badge }}</span>
-            <img src="{{ asset('images/' ~ vehicule.image) }}" alt="{{ vehicule.titre }}" class="main-img">
+            <span class="product-badge">Édition Limitée</span>
+            
+            {# On utilise la même logique que sur le catalogue #}
+            <img src="{{ voiture.image ? (voiture.image starts with 'http' ? voiture.image : asset('images/' ~ voiture.image)) : asset('images/ferrari_f40.png') }}"
+                 alt="Photo {{ voiture.immatriculation }}" 
+                 class="main-img">
         </div>
 
+        {# --- INFOS TECHNIQUES --- #}
         <div class="product-info">
             <div class="product-header">
-                <h1 class="product-title">{{ vehicule.titre }}</h1>
-                <p class="product-subtitle">{{ vehicule.sous_titre }}</p>
+                <h1 class="product-title">{{ voiture.immatriculation }}</h1>
+                <p class="product-subtitle">Héritage / Modèle {{ voiture.anneeMiseEnService }}</p>
             </div>
 
             <div class="product-price-box">
-                <span class="label">Prix journée</span>
-                <span class="price">{{ vehicule.prix }}</span>
+                <span class="label">Tarif de location</span>
+                <span class="price">{{ voiture.prixJournalier|number_format(0, '.', ' ') }} € <small>/ jour</small></span>
             </div>
 
             <div class="specs-grid">
                 <div class="spec-item">
                     <span class="spec-icon">📅</span>
                     <span class="spec-label">Année</span>
-                    <span class="spec-value">{{ vehicule.annee }}</span>
+                    <span class="spec-value">{{ voiture.anneeMiseEnService }}</span>
                 </div>
                 <div class="spec-item">
                     <span class="spec-icon">🐎</span>
-                    <span class="spec-label">Puissance</span>
-                    <span class="spec-value">{{ vehicule.puissance }}</span>
-                </div>
-                <div class="spec-item">
-                    <span class="spec-icon">⏱️</span>
-                    <span class="spec-label">0-100 km/h</span>
-                    <span class="spec-value">{{ vehicule.acceleration }}</span>
+                    <span class="spec-label">Kilométrage</span>
+                    <span class="spec-value">{{ voiture.kilometrage|number_format(0, ',', ' ') }} km</span>
                 </div>
                 <div class="spec-item">
                     <span class="spec-icon">⛽</span>
-                    <span class="spec-label">Carburant</span>
-                    <span class="spec-value">{{ vehicule.carburant }}</span>
+                    <span class="spec-label">Énergie</span>
+                    <span class="spec-value">Essence</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🛡️</span>
+                    <span class="spec-label">État</span>
+                    <span class="spec-value">Concours</span>
                 </div>
             </div>
 
             <div class="product-description">
-                <p>{{ vehicule.description }}</p>
+                <p>{{ voiture.description|default("Ce véhicule d'exception Heritage Motors a été rigoureusement sélectionné pour sa rareté et son état de conservation irréprochable.") }}</p>
             </div>
 
             <div class="product-actions">
                 <button class="btn-gold-large">Réserver ce véhicule</button>
-                <button class="btn-outline">Contacter un expert</button>
+                <a href="{{ path('app_catalogue') }}" class="btn-outline">Retour au catalogue</a>
             </div>
         </div>
 

@@ -1,20 +1,132 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Heritage Motors{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2290%22>🚗</text></svg>">
-        
-        {% block stylesheets %}
-            {# Cette ligne est la plus importante pour ton style #}
-            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        {% endblock %}
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Heritage Motors{% endblock %}</title>
 
-        {% block javascripts %}
-        {% endblock %}
-    </head>
-    <body>
-        {# Ton contenu de index.html.twig viendra s'insérer ici #}
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    gold:    { DEFAULT: '#c9a96e', light: '#e8d5b0', dim: 'rgba(201,169,110,0.15)' },
+                    surface: { DEFAULT: '#111111', raised: '#1a1a1a' },
+                },
+                fontFamily: {
+                    serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                    sans:  ['Inter', 'system-ui', 'sans-serif'],
+                },
+            }
+        }
+    }
+    </script>
+
+    <!-- Custom CSS (grain, scrollbar, animations) -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body class="bg-[#080808] text-[#f0f0f0] font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- ══ NAVBAR ══════════════════════════════════════════════════════════ -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#080808]/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-[72px]">
+
+            <!-- Logo -->
+            <a href="{{ path('app_accueil') }}" class="flex-shrink-0">
+                <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="h-11 w-auto">
+            </a>
+
+            <!-- Nav links -->
+            <nav class="hidden md:flex items-center gap-10">
+                <a href="{{ path('app_accueil') }}"
+                   class="text-[11px] tracking-[3px] uppercase text-[#777] hover:text-gold transition-colors duration-300">
+                    Accueil
+                </a>
+                <a href="{{ path('app_voitures') }}"
+                   class="text-[11px] tracking-[3px] uppercase text-[#777] hover:text-gold transition-colors duration-300">
+                    Collection
+                </a>
+            </nav>
+
+            <!-- User area -->
+            <div class="flex items-center gap-3">
+                {% if app.user %}
+                    <span class="hidden md:block font-serif italic text-gold text-sm">
+                        Bonjour, {{ app.user.prenom }}
+                    </span>
+                    <a href="{{ path('app_logout') }}"
+                       class="text-[10px] tracking-[2px] uppercase text-[#666] hover:text-gold border border-white/10 hover:border-gold/40 px-4 py-2.5 transition-all duration-300">
+                        Déconnexion
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}"
+                       class="text-[10px] tracking-[2px] uppercase text-[#666] hover:text-gold border border-white/10 hover:border-gold/40 px-4 py-2.5 transition-all duration-300">
+                        Connexion
+                    </a>
+                    <a href="{{ path('app_register') }}"
+                       class="text-[10px] tracking-[2px] uppercase bg-gold text-black hover:bg-gold-light px-4 py-2.5 font-semibold transition-all duration-300">
+                        Inscription
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- ══ CONTENT ═════════════════════════════════════════════════════════ -->
+    <main class="flex-1 pt-[72px]">
         {% block body %}{% endblock %}
-    </body>
+    </main>
+
+    <!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+    <footer class="border-t border-white/5 mt-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+                <div>
+                    <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="h-10 w-auto mb-5">
+                    <p class="text-[#555] text-sm leading-relaxed max-w-xs">
+                        L'excellence automobile depuis 1987. Une collection exclusive de véhicules d'exception.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] tracking-[3px] uppercase text-gold mb-5">Navigation</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="{{ path('app_accueil') }}"
+                               class="text-sm text-[#666] hover:text-gold transition-colors">Accueil</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('app_voitures') }}"
+                               class="text-sm text-[#666] hover:text-gold transition-colors">Notre Collection</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] tracking-[3px] uppercase text-gold mb-5">Contact</h4>
+                    <ul class="space-y-3 text-sm text-[#555]">
+                        <li>contact@heritagemotors.fr</li>
+                        <li>+33 1 23 45 67 89</li>
+                        <li>Paris, France</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-[#3a3a3a] text-[10px] tracking-[3px] uppercase">
+                    © {{ "now"|date("Y") }} Heritage Motors. Tous droits réservés.
+                </p>
+                <p class="text-[#2e2e2e] text-[10px] tracking-widest uppercase">
+                    Démo scolaire — Aucun vrai paiement
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    {% block javascripts %}{% endblock %}
+</body>
 </html>

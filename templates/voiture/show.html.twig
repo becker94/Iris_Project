@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ voiture.immatriculation }} — Heritage Motors{% endblock %}
+
+{% block body %}
+
+    {# Breadcrumb #}
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 pt-10 pb-0">
+        <a href="{{ path('app_voitures') }}"
+           class="text-[10px] tracking-[3px] uppercase text-[#555] hover:text-gold transition-colors inline-flex items-center gap-2">
+            ← Retour à la collection
+        </a>
+    </div>
+
+    {# ══ MAIN LAYOUT ════════════════════════════════════════════════════════ #}
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        {# ── Left: Image ── #}
+        <div class="lg:sticky lg:top-24">
+            <div class="overflow-hidden border border-white/5 shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
+                <img src="{{ voiture.image ? (voiture.image starts with 'http' ? voiture.image : asset('images/' ~ voiture.image)) : 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=80' }}"
+                     alt="{{ voiture.immatriculation }}"
+                     class="w-full object-cover aspect-[4/3]">
+            </div>
+        </div>
+
+        {# ── Right: Info ── #}
+        <div class="flex flex-col gap-7 animate-fadeup">
+
+            <div>
+                <p class="text-[10px] tracking-[4px] uppercase text-gold mb-3">Collection Heritage</p>
+                <h1 class="font-serif text-5xl md:text-6xl font-light tracking-[4px] uppercase leading-tight">
+                    {{ voiture.immatriculation }}
+                </h1>
+            </div>
+
+            <div>
+                <p class="text-[9px] tracking-[3px] uppercase text-[#555] mb-1">Valeur estimée</p>
+                <div class="font-serif text-5xl text-gold">
+                    {{ voiture.prix_achat|number_format(0, '.', ' ') }} €
+                </div>
+            </div>
+
+            {% if voiture.description %}
+                <p class="text-[#666] text-sm leading-relaxed border-l-2 border-gold/30 pl-5">
+                    {{ voiture.description }}
+                </p>
+            {% endif %}
+
+            {# Specs grid #}
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-surface border border-white/5 p-5 text-center">
+                    <p class="text-[9px] tracking-[3px] uppercase text-gold mb-2">Année</p>
+                    <p class="font-serif text-xl">{{ voiture.annee_mise_en_service }}</p>
+                </div>
+                <div class="bg-surface border border-white/5 p-5 text-center">
+                    <p class="text-[9px] tracking-[3px] uppercase text-gold mb-2">Kilométrage</p>
+                    <p class="font-serif text-xl">{{ voiture.kilometrage|number_format(0, ',', ' ') }} km</p>
+                </div>
+                <div class="bg-surface border border-white/5 p-5 text-center">
+                    <p class="text-[9px] tracking-[3px] uppercase text-gold mb-2">Immatriculation</p>
+                    <p class="font-serif text-xl">{{ voiture.immatriculation }}</p>
+                </div>
+                <div class="bg-surface border border-white/5 p-5 text-center">
+                    <p class="text-[9px] tracking-[3px] uppercase text-gold mb-2">Référence</p>
+                    <p class="font-serif text-xl">#{{ voiture.id_voiture }}</p>
+                </div>
+            </div>
+
+            {# Actions #}
+            <div class="flex flex-col gap-3 pt-2">
+                <a href="/checkout/{{ voiture.id_voiture }}"
+                   class="block text-center bg-gold text-black hover:bg-gold-light font-semibold
+                          text-[10px] tracking-[4px] uppercase py-5 transition-all duration-300">
+                    Acheter ce véhicule
+                </a>
+                <a href="{{ path('app_voitures') }}"
+                   class="block text-center border border-white/10 text-[#666] hover:border-gold/40 hover:text-gold
+                          text-[10px] tracking-[3px] uppercase py-4 transition-all duration-300">
+                    ← Retour à la collection
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

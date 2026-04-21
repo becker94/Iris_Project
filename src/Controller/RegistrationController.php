@@ -27,16 +27,16 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Hachage du mot de passe
             $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
+                $passwordHasher->hashPassword($user, $form->get('plainPassword')->getData())
             );
 
+            // Insertion SQL
             $entityManager->persist($user);
             $entityManager->flush();
 
+            // Connexion automatique
             return $security->login($user, UserAuthAuthenticator::class, 'main');
         }
 
@@ -45,4 +45,3 @@ class RegistrationController extends AbstractController
         ]);
     }
 }
-

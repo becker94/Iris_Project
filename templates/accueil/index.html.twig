@@ -1,88 +1,91 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Heritage Motors - Excellence{% endblock %}
+{% block title %}Heritage Motors — Excellence Automobile{% endblock %}
 
 {% block body %}
-    <div class="dark-theme-wrapper">
-        
-        <header class="premium-header">
-            <div class="header-left">
-                <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="main-logo">
-            </div>
 
-            <div class="header-right">
-                <a href="{{ path('app_login') }}" class="login-btn" title="Connexion">
-                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                </a>
-                <div class="hamburger-menu" onclick="toggleMenu()">
-                    <svg viewBox="0 0 24 24" width="32" height="32" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                </div>
-                <div class="dropdown-menu" id="appMenu">
-                    <ul>
-                        <li><a href="{{ path('app_coming_soon') }}">Heritage Rent</a></li>
-                        <li><a href="{{ path('app_coming_soon') }}">Heritage Design</a></li>
-                        <li><a href="{{ path('app_coming_soon') }}">Heritage Expo</a></li>
-                        <li><a href="{{ path('app_coming_soon') }}">Heritage Volt</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+    {# ══ HERO ══════════════════════════════════════════════════════════════ #}
+    <section class="relative min-h-screen -mt-[72px] flex items-center justify-center overflow-hidden">
 
-        <section class="hero-section">
-            <div class="content-box">
-                
-                <h1 class="main-title">HERITAGE <span class="gold-text">MOTOR</span></h1>
-                <p class="subtitle">
-                    L'excellence automobile à portée de main. Location, vente et personnalisation de véhicules d'exception depuis 2010.
+        {# Background image (Unsplash — Porsche on road) #}
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920&q=80"
+                 alt="Heritage Motors"
+                 class="w-full h-full object-cover opacity-25">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#080808]/70 via-[#080808]/30 to-[#080808]"></div>
+        </div>
+
+        {# Content #}
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <p class="animate-fadeup text-[10px] tracking-[6px] uppercase text-gold mb-8">
+                Collection Exclusive
+            </p>
+            <h1 class="animate-fadeup-delay font-serif font-light leading-none tracking-[8px] uppercase text-white
+                        text-[64px] md:text-[100px] lg:text-[120px] mb-8">
+                Heritage<br><span class="text-gold">Motor</span>
+            </h1>
+            <p class="animate-fadeup-delay-2 text-[#777] max-w-md mx-auto text-sm leading-relaxed tracking-wider mb-14">
+                L'excellence automobile à portée de main.<br>
+                Découvrez notre collection exclusive de véhicules d'exception.
+            </p>
+            <a href="{{ path('app_voitures') }}"
+               class="animate-fadeup-delay-2 inline-block border border-gold text-gold hover:bg-gold hover:text-black
+                      text-[10px] tracking-[5px] uppercase px-14 py-5 transition-all duration-500">
+                Découvrir le catalogue
+            </a>
+        </div>
+
+        {# Scroll hint #}
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-[#444]">
+            <span class="text-[9px] tracking-[4px] uppercase">Défiler</span>
+            <div class="w-px h-10 bg-gradient-to-b from-[#444] to-transparent"></div>
+        </div>
+    </section>
+
+    {# ══ STATS ══════════════════════════════════════════════════════════════ #}
+    <section class="max-w-7xl mx-auto px-6 lg:px-10 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border border-white/5">
+            <div class="p-12 text-center hover:bg-surface transition-colors duration-300">
+                <p class="font-serif text-5xl text-gold mb-3">500+</p>
+                <p class="text-[10px] tracking-[3px] uppercase text-[#555]">Véhicules d'exception</p>
+            </div>
+            <div class="p-12 text-center hover:bg-surface transition-colors duration-300">
+                <p class="font-serif text-5xl text-gold mb-3">35+</p>
+                <p class="text-[10px] tracking-[3px] uppercase text-[#555]">Années d'expertise</p>
+            </div>
+            <div class="p-12 text-center hover:bg-surface transition-colors duration-300">
+                <p class="font-serif text-5xl text-gold mb-3">100%</p>
+                <p class="text-[10px] tracking-[3px] uppercase text-[#555]">Satisfaction client</p>
+            </div>
+        </div>
+    </section>
+
+    {# ══ ABOUT STRIP ════════════════════════════════════════════════════════ #}
+    <section class="relative overflow-hidden mb-24">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80"
+                 alt="About"
+                 class="w-full h-full object-cover opacity-10">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 py-24 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <p class="text-[10px] tracking-[4px] uppercase text-gold mb-4">Notre Philosophie</p>
+                <h2 class="font-serif text-4xl md:text-5xl font-light leading-tight mb-6">
+                    L'art de choisir<br>l'<span class="text-gold">exception</span>
+                </h2>
+                <p class="text-[#666] text-sm leading-relaxed max-w-md">
+                    Chaque véhicule de notre collection a été sélectionné avec la plus grande exigence.
+                    Nous ne proposons que ce que nous considérons comme le summum de l'ingénierie automobile.
                 </p>
-
-                <div class="filter-container">
-                    
-                    <div class="filter-item">
-                        <div class="circle-gold">
-                            <img src="{{ asset('images/gt_500.jpg') }}" alt="Catalogue">
-                        </div>
-                        <a href="{{ path('app_catalogue') }}" class="btn-gold-label">CATALOGUE</a>
-                    </div>
-
-                    <div class="filter-item">
-                        <div class="circle-gold">
-                            <img src="{{ asset('images/logo_location.png') }}" alt="Location" class="contain-img">
-                        </div>
-                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">LOCATION</a>
-                    </div>
-
-                    <div class="filter-item">
-                        <div class="circle-gold">
-                            <img src="{{ asset('images/logo_desgin.png') }}" alt="Design" class="contain-img">
-                        </div>
-                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">DESIGN</a>
-                    </div>
-
-                    <div class="filter-item">
-                        <div class="circle-gold">
-                            <img src="{{ asset('images/logo_expo.png') }}" alt="Expo" class="contain-img">
-                        </div>
-                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">EXPO</a>
-                    </div>
-
-                    <div class="filter-item">
-                        <div class="circle-gold">
-                        </div>
-                        <a href="{{ path('app_coming_soon') }}" class="btn-gold-label">ÉCHANGE</a>
-                    </div>
-
-                </div>
-
             </div>
-        </section>
+            <div class="flex-shrink-0">
+                <a href="{{ path('app_voitures') }}"
+                   class="inline-block border border-white/20 text-[#888] hover:border-gold hover:text-gold
+                          text-[10px] tracking-[4px] uppercase px-10 py-4 transition-all duration-400">
+                    Voir la collection →
+                </a>
+            </div>
+        </div>
+    </section>
 
-    </div>
-
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("appMenu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
-    </script>
 {% endblock %}

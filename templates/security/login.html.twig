@@ -1,65 +1,95 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Connexion - Heritage Motors{% endblock %}
+{% block title %}Connexion — Heritage Motors{% endblock %}
 
 {% block body %}
-<div class="dark-theme-wrapper login-page">
-    <div class="login-container">
-        <div class="login-header">
-            <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="login-logo">
-            <h1 class="login-title">Connexion</h1>
-            <p class="login-subtitle">Accédez à votre espace privilège</p>
-        </div>
+<div class="min-h-[calc(100vh-72px)] flex items-center justify-center px-6 py-16">
+    <div class="w-full max-w-md animate-fadeup">
 
-        <form method="post">
+        {# Card #}
+        <div class="bg-surface border border-white/5 p-10 shadow-[0_40px_100px_rgba(0,0,0,0.6)]">
+
+            {# Header #}
+            <div class="text-center mb-10">
+                <img src="{{ asset('images/logo.png') }}" alt="Heritage Motors" class="h-10 w-auto mx-auto mb-7">
+                <h1 class="font-serif text-3xl font-light tracking-[6px] uppercase mb-2">Connexion</h1>
+                <p class="text-[11px] text-[#555] tracking-wider">Accédez à votre espace privilège</p>
+            </div>
+
+            {# Error #}
             {% if error %}
-                <div class="login-error">
+                <div class="bg-red-950/40 border border-red-800/40 text-red-400 text-sm px-4 py-3 mb-7">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
             {% endif %}
 
-            {% if app.user %}
-                <div class="login-info">
-                    Vous êtes déjà connecté en tant que <span class="gold-text">{{ app.user.userIdentifier }}</span>,
-                    <a href="{{ path('app_logout') }}">Me déconnecter</a>
+            <form method="post" class="flex flex-col gap-6">
+
+                {# Email #}
+                <div class="flex flex-col gap-2">
+                    <label for="inputEmail"
+                           class="text-[10px] tracking-[3px] uppercase text-gold font-semibold">
+                        Email
+                    </label>
+                    <input type="email"
+                           value="{{ last_username }}"
+                           name="email"
+                           id="inputEmail"
+                           autocomplete="email"
+                           required
+                           autofocus
+                           placeholder="exemple@email.com"
+                           class="w-full bg-[#0d0d0d] border border-white/10 focus:border-gold
+                                  text-[#f0f0f0] placeholder-[#333] text-sm px-4 py-3.5
+                                  outline-none transition-colors duration-300">
                 </div>
-            {% endif %}
 
-            <div class="form-group">
-                <label for="inputEmail">Email</label>
-                <input type="email" 
-                       value="{{ last_username }}" 
-                       name="email" 
-                       id="inputEmail" 
-                       class="form-input" 
-                       autocomplete="email" 
-                       required autofocus 
-                       placeholder="exemple@email.com">
-            </div>
+                {# Password #}
+                <div class="flex flex-col gap-2">
+                    <label for="inputPassword"
+                           class="text-[10px] tracking-[3px] uppercase text-gold font-semibold">
+                        Mot de passe
+                    </label>
+                    <input type="password"
+                           name="password"
+                           id="inputPassword"
+                           autocomplete="current-password"
+                           required
+                           placeholder="••••••••"
+                           class="w-full bg-[#0d0d0d] border border-white/10 focus:border-gold
+                                  text-[#f0f0f0] placeholder-[#333] text-sm px-4 py-3.5
+                                  outline-none transition-colors duration-300">
+                </div>
 
-            <div class="form-group">
-                <label for="inputPassword">Mot de passe</label>
-                <input type="password" 
-                       name="password" 
-                       id="inputPassword" 
-                       class="form-input" 
-                       autocomplete="current-password" 
-                       required 
-                       placeholder="••••••••">
-            </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-
-            <div class="form-group checkbox-container">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                {# Remember me #}
+                <label class="flex items-center gap-3 text-sm text-[#555] cursor-pointer">
+                    <input type="checkbox" name="_remember_me"
+                           class="accent-gold w-4 h-4">
+                    Se souvenir de moi
                 </label>
-            </div>
 
-            <button class="btn-gold-full" type="submit">
-                Se connecter
-            </button>
-        </form>
+                {# Submit #}
+                <button type="submit"
+                        class="w-full bg-gold hover:bg-gold-light text-black font-semibold
+                               text-[10px] tracking-[4px] uppercase py-4 mt-2
+                               transition-all duration-300 hover:-translate-y-0.5">
+                    Se connecter
+                </button>
+
+                {# Register link #}
+                <p class="text-center text-sm text-[#444] mt-1">
+                    Pas encore de compte ?
+                    <a href="{{ path('app_register') }}"
+                       class="text-gold hover:text-gold-light underline underline-offset-4 transition-colors ml-1">
+                        Créer un compte
+                    </a>
+                </p>
+
+            </form>
+        </div>
+
     </div>
 </div>
 {% endblock %}

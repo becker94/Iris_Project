@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement annulé — Heritage Motors{% endblock %}
+
+{% block body %}
+<div class="min-h-[calc(100vh-72px)] flex items-center justify-center px-6 py-16">
+    <div class="text-center max-w-md animate-fadeup">
+
+        {# Icon #}
+        <div class="w-24 h-24 border border-white/8 bg-white/2 rounded-full
+                    flex items-center justify-center mx-auto mb-10">
+            <svg viewBox="0 0 24 24" width="36" height="36" stroke="#555" stroke-width="1.5" fill="none">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </div>
+
+        <p class="text-[10px] tracking-[5px] uppercase text-[#444] mb-4">Transaction annulée</p>
+        <h1 class="font-serif text-4xl md:text-5xl font-light tracking-[4px] uppercase mb-4">
+            Paiement annulé
+        </h1>
+        <p class="text-[#555] text-sm mb-3">Votre transaction n'a pas été finalisée</p>
+
+        <p class="text-[#444] text-sm leading-relaxed mb-12">
+            Aucun montant n'a été débité.<br>
+            Vous pouvez retourner au catalogue et reprendre votre sélection à tout moment.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{{ path('app_voitures') }}"
+               class="inline-block bg-gold hover:bg-gold-light text-black font-semibold
+                      text-[10px] tracking-[4px] uppercase px-10 py-4
+                      transition-all duration-300 hover:-translate-y-0.5">
+                Retour au catalogue
+            </a>
+            <a href="{{ path('app_accueil') }}"
+               class="inline-block border border-white/10 text-[#555] hover:border-gold/30 hover:text-gold
+                      text-[10px] tracking-[4px] uppercase px-10 py-4
+                      transition-all duration-300">
+                Accueil
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

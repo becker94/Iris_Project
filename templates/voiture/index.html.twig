@@ -20,22 +20,12 @@
 
     {# ══ GRID ════════════════════════════════════════════════════════════════ #}
     <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
-
-        {# Compteur #}
-        {% if voitures|length > 0 %}
-            <p class="text-[10px] tracking-[3px] uppercase text-[#444] mb-10">
-                {{ voitures|length }} véhicule{{ voitures|length > 1 ? 's' : '' }} disponible{{ voitures|length > 1 ? 's' : '' }}
-            </p>
-        {% endif %}
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for voiture in voitures %}
 
                 <article class="group bg-surface border border-white/5 hover:border-gold/30
                                 transition-all duration-500 hover:-translate-y-2
                                 hover:shadow-[0_30px_60px_rgba(0,0,0,0.6)]">
-
-                    {# Image #}
                     <div class="overflow-hidden h-60 relative">
                         <span class="absolute top-4 left-4 z-10 bg-gold text-black
                                      text-[9px] tracking-[2px] uppercase px-3 py-1 font-semibold">
@@ -45,18 +35,14 @@
                              alt="{{ voiture.immatriculation }}"
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
-
-                    {# Details #}
                     <div class="p-7">
                         <p class="text-[9px] tracking-[3px] uppercase text-gold mb-2">Premium Heritage</p>
                         <h3 class="font-serif text-2xl font-light mb-5">{{ voiture.immatriculation }}</h3>
-
                         <div class="flex gap-6 text-[11px] text-[#555] tracking-wider
                                     border-t border-b border-white/5 py-4 mb-5">
                             <span>{{ voiture.annee_mise_en_service }}</span>
                             <span>{{ voiture.kilometrage|number_format(0, ',', ' ') }} km</span>
                         </div>
-
                         <div class="flex items-center justify-between">
                             <span class="font-serif text-2xl text-gold">
                                 {{ voiture.prix_achat|number_format(0, '.', ' ') }} €
