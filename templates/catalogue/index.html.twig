@@ -4,6 +4,15 @@
 
 {% block body %}
 
+    {# ══ ALERTE DIRECTUS HORS-LIGNE ══════════════════════════════════════════ #}
+    {% if error is defined and error %}
+        <div id="directus-error"
+             class="bg-red-950/40 border border-red-800/40 text-red-400 text-sm
+                    px-6 py-4 max-w-7xl mx-auto mt-6">
+            {{ error }}
+        </div>
+    {% endif %}
+
     {# ══ HEADER BANNER ══════════════════════════════════════════════════════ #}
     <div class="relative h-56 flex items-center justify-center overflow-hidden">
         <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80"
